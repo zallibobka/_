@@ -43,16 +43,17 @@ class SecondScreen_tov(Screen):
 
         connect = sqlite3.connect('resylk.db')
         cursor = connect.cursor()
-        spisok = set()
+        spisok = []
         for i in cursor.execute('SELECT * FROM tovar').fetchall():
             #data_product.append(i[1])
-            spisok.add(i[1])
+            spisok.append(i[1])
         for elem in spisok:
             bt = Button(text=elem, on_press=self.go_to_product_screen)
             layout.add_widget(bt)
 
         button = Button(text='Вернуться на главный экран', on_press=self.go_to_main_screen)
         layout.add_widget(button)
+        
 
     def go_to_product_screen(self, instance):
         self.manager.current = 'product'
